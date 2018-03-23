@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>POST</title>
+</head>
+<body>
+
+<!--
+ POST数据如何接收
+ POST数据很大---要分段，比GEY请求数据量大很多
+    data
+
+ -->
+
+  <form action="http://localhost:8888/aaa" method="post">
+    用户：<input type="text" name="user" value="" /><br>
+    密码：<input type="password" name="pwd" value="" /><br>
+    <textarea name="content"></textarea><br>
+    <input type="submit" value="提交" />
+  </form>
+</body>
+</html>

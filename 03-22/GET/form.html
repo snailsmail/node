@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>node http form get</title>
+</head>
+<body>
+<!--
+  1.自己切
+  2.querystring xxx=xxx&xxx=xxx
+  3.urlLib      aaa?xxx=xxx&xxx=xxx
+     urlLib.parse(url, true)   pathname
+                               query
+ -->
+<form action="http://localhost:8888/qqqq" method="get">
+  用户：<input type="text" name="user" value="" /><br/>
+  密码：<input type="password" name="pwd" value="" /><br/>
+  <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

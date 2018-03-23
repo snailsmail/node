@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="messageBoard">
+<head>
+  <meta charset="UTF-8">
+  <title>留言板</title>
+  <link href="messageboard.css" rel="stylesheet"/>
+  <link href="iconfont.css" rel="stylesheet" />
+  <script src="angular.js"></script>
+  <script src="jquery.js"></script>
+  <script>
+    let mod = angular.module('messageBoard', []);
+
+    mod.controller('main', function ($scope) {
+
+      $scope.current = 1;
+      $scope.datas = [{"id": 1, "content": "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容", "good": 2, "bad": 1, "date": 1520996956259},{"id": 2, "content": "内容内容内容容内容内容内容内容内容", "good": 6, "bad": 3, "date": 1520956956259}];
+
+      $scope.getList = function () {
+        $.ajax({
+          url: '/getList',
+          type: 'get',
+          dataType: 'json',
+          data: {
+            current: $scope.current
+          },
+          success: function (res) {
+            if (res.ok) {
+              $scope.datas = res.datas;
+            }
+          },
+          error: function () {
+            alert('获取失败');
+          }
+        });
+      }
+
+      $scope.add = function () {
+        $.ajax({
+          url: '/add',
+          type: 'post',
+          data: {
+            content: $scope.content
+          },
+          success: function (res) {
+            var obj = eval('(' + res + ')');
+            if (obj.ok) {
+              $scope.getList();
+            }
+          },
+          error: function () {
+            alert('提交失败');
+          }
+        });
+      }
+
+      //加载页面时就去获取数据
+      // $scope.getList();
+
+
+    });
+  </script>
+</head>
+<body ng-controller="main">
+  <div class="box">
+    <h2>留言板</h2>
+    <div class="content-box">
+      <textarea rows="4" class="content" ng-model="content"></textarea><br/>
+      <input type="button" class="button" value="提交" id="submit-btn" ng-click="add()"/>
+    </div>
+
+    <div class="list-box">
+      <div class="list" ng-repeat="item in datas">
+        <div class="list-show">
+          <div class="content-show">{{item.content}}</div>
+          <div class="icon-show">
+            <span class="icon good"><i class="iconfont icon-good"></i>{{item.good}}</span>
+            <span class="icon bad"><i class="iconfont icon-bad"></i>{{item.bad}}</span>
+            <span class="icon delete"><i class="iconfont icon-lajixiang"></i></span>
+          </div>
+        </div>
+        <div class="date-box">
+          <span class="date">{{item.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

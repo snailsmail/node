@@ -1,0 +1,61 @@
+body {
+  margin: 0px;
+}
+
+.box {
+  width: 700px;
+  margin: 0 auto;
+}
+.box .content-box {
+  margin: 30px 50px;
+}
+.box .content-box .content {
+  width: 590px;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 2px solid #dde;
+  padding: 5px;
+}
+.box .content-box .button {
+  float: right;
+  margin-top: 10px;
+}
+.box .content-box #submit-btn {
+  width: 80px;
+  background-color: darkcyan;
+  border: 2px #cccccc solid;
+  cursor: pointer;
+  color: #fff;
+}
+.box .list-box {
+  margin-top: 70px;
+}
+.box .list-box .list {
+  height: 80px;
+  width: 100%;
+  border: 1px #ccc solid;
+  padding: 10px;
+  margin-top: 10px;
+}
+.box .list-box .list-show{
+  height: 60px;
+}
+.box .list-box .content-show {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 600px;
+  float: left;
+}
+.box .list-box .icon-show {
+  width: 100px;
+  float: right;
+}
+.box .list-box .icon {
+  padding: 3px;
+  cursor: pointer;
+}
+.box .list-box .date-box {
+  margin-top: 10px;
+  font-size: 12px;
+}
