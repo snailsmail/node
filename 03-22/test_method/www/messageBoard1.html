@@ -33,13 +33,11 @@
       $scope.datas = [];
 
       $scope.getList = function () {
-
         $http.get(`/getList?current=${$scope.current}`).then(res => {
           $scope.datas = res.data;
         }, () => {
           alert('获取失败');
         });
-
       }
 
       $scope.add = function () {
@@ -51,12 +49,46 @@
           }
         }).then(res => {
           if (res.data.ok) {
-            console.log($scope.content);
             $scope.getList();
             $scope.content = '';
           }
         }, () => {
           alert('提交失败');
+        });
+      }
+
+      $scope.delete = function (index) {
+        $http({
+          url: '/delete',
+          method: 'post',
+          data: {
+            id: index
+          }
+        }).then(res => {
+          if (res.data.ok) {
+            $scope.getList();
+          }
+        }, () => {
+          alert('删除失败');
+        });
+      }
+
+
+      $scope.badOrGood = function (index, type) {
+
+        $http({
+          url: '/update',
+          method: 'post',
+          data: {
+            id: index,
+            type: type
+          }
+        }).then(res => {
+          if (res.data.ok) {
+            $scope.getList();
+          }
+        }, () => {
+          alert('失败');
         });
       }
 
@@ -80,9 +112,9 @@
         <div class="list-show">
           <div class="content-show">{{item.content}}</div>
           <div class="icon-show">
-            <span class="icon good"><i class="iconfont icon-good"></i>{{item.good}}</span>
-            <span class="icon bad"><i class="iconfont icon-bad"></i>{{item.bad}}</span>
-            <span class="icon delete"><i class="iconfont icon-lajixiang"></i></span>
+            <span class="icon good" ng-click="badOrGood(item.id, 'good')"><i class="iconfont icon-good"></i>{{item.good}}</span>
+            <span class="icon bad" ng-click="badOrGood(item.id, 'bad')"><i class="iconfont icon-bad"></i>{{item.bad}}</span>
+            <span class="icon delete" ng-click="delete(item.id)"><i class="iconfont icon-lajixiang"></i></span>
           </div>
         </div>
         <div class="date-box">

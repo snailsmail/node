@@ -42,6 +42,8 @@ data:{type}
 
 /delete/{id}
 
+
+
 //存在问题
 1.server2.js中res.write()不能返回Array，转成json也不行，前台不能处理
 //框架express中，应用增强了write方法的send方法解决问题
@@ -56,3 +58,4 @@ express框架POST请求获得参数
 express-static //静态文件处理
 
 模块化
+2.还有翻页问题

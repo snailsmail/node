@@ -34,6 +34,41 @@ server.post('/add', function (req, res) {
   res.end();
 });
 
+server.post('/delete', function (req, res) {
+
+  for (let i = 0; i < datas.length; i++) {
+
+    if (req.body.id == datas[i].id) {
+      datas.splice(i, 1);
+    }
+  }
+
+  //index-id=-1
+  for (let i = 0; i < datas.length; i++) {
+    datas[i].id = i + 1;
+  }
+
+  res.write('{"ok": true}');
+  res.end();
+});
+
+server.post('/update', function (req, res) {
+
+  for (let i = 0; i < datas.length; i++) {
+
+    if (req.body.id == datas[i].id) {
+      if (req.body.type == 'good') {
+        datas[i].good++;
+      } else if (req.body.type == 'bad') {
+        datas[i].bad++;
+      }
+    }
+  }
+
+  res.write('{"ok": true}');
+  res.end();
+});
+
 server.use(expressStatic('./www'));
 
 

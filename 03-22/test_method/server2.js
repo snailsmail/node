@@ -49,7 +49,7 @@ let server = http.createServer(function (req, res) {
       for (let i = 0; i < datas.length; i++) {
 
         if (POST.id == datas[i].id) {
-          datas.splice(i, true);
+          datas.splice(i, 1);
         }
       }
 
