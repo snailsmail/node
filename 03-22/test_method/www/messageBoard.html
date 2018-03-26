@@ -13,31 +13,32 @@
     mod.controller('main', function ($scope) {
 
       $scope.current = 1;
-      $scope.datas = [{"id": 1, "content": "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容", "good": 2, "bad": 1, "date": 1520996956259},{"id": 2, "content": "内容内容内容容内容内容内容内容内容", "good": 6, "bad": 3, "date": 1520956956259}];
+      // $scope.datas = [{"id": 1, "content": "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容", "good": 2, "bad": 1, "date": 1520996956259},{"id": 2, "content": "内容内容内容容内容内容内容内容内容", "good": 6, "bad": 3, "date": 1520956956259}];
+      $scope.datas = [];
 
       $scope.getList = function () {
         $.ajax({
           url: '/getList',
           type: 'get',
-          dataType: 'json',
           data: {
             current: $scope.current
           },
           success: function (res) {
-            if (res.ok) {
-              $scope.datas = res.datas;
-            }
+            console.log(res);
+            $scope.datas = res;
+            $scope.$apply();
           },
           error: function () {
             alert('获取失败');
           }
         });
+
       }
 
       $scope.add = function () {
         $.ajax({
           url: '/add',
-          type: 'post',
+          type: 'get',
           data: {
             content: $scope.content
           },
@@ -54,7 +55,7 @@
       }
 
       //加载页面时就去获取数据
-      // $scope.getList();
+      $scope.getList();
 
 
     });

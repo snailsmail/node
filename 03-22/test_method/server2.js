@@ -11,7 +11,7 @@ let server = http.createServer(function (req, res) {
   var str = '';
   req.on('data', function (data) {
     str += data;
-  })
+  });
   req.on('end', function () {
 
     let obj = urlLib.parse(req.url, true);
